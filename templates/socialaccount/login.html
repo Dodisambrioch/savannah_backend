@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %} {% load socialaccount %}
+<!-- Load socialaccount tags for provider_login_url -->
+
+{% block title %}Continue with Social Login{% endblock %} {% block content %}
+<section class="vh-100 d-flex align-items-center bg-light my-5">
+<div class="container text-center py-2">
+<h2 class="mb-4">Almost There!</h2>
+<p class="mb-4">
+You're signing in with {{ provider.name }}. Click "Continue" to complete
+your login.
+</p>
+
+<!-- Use provider_login_url to correctly set the provider's URL -->
+<form method="post" action="{% provider_login_url provider.id %}">
+{% csrf_token %}
+<button type="submit" class="btn btn-primary btn-lg">
+Continue with {{ provider.name }}
+</button>
+</form>
+
+<p class="mt-3">
+<a href="{% url 'account_login' %}" class="btn btn-link">Back to Login</a>
+</p>
+</div>
+</section>
+{% endblock %}

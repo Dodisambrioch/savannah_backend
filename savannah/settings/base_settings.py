@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'orders',
 
     # INSTALLED PACKAGES
-    'django_filters',
+    # 'django_filters',
     'django.contrib.sites',
 
     'allauth',
@@ -131,18 +131,13 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'online'},
+        'APP': {
+            'client_id': config('GOOGLE_CLIENT_ID'),
+            'secret': config('GOOGLE_CLIENT_SECRET'),
+            'key': ''
+        }
     },
 
-    'openid_connect': {
-        'APP': {
-            'client_id': 'your-client-id',
-            'secret': 'your-client-secret',
-            'key': 'your-api-key',
-            'auth_params': {'scope': 'openid email profile'}
-        }
-    }
 }
 
 REST_FRAMEWORK = {
